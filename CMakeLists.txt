@@ -4,11 +4,13 @@ project(pose_ekf)
 set(CMAKE_BUILD_TYPE "release")
 set(CMAKE_CXX_FLAGS "-DNDEBUG -std=c++11 -march=native -Ofast -Wall -fopenmp")
 
+include("cmake/geographic.cmake")
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(Eigen3 REQUIRED)
-find_package(GeographicLib 1.35 REQUIRED)
+# find_package(GeographicLib 1.35 REQUIRED)
 
 find_package(catkin REQUIRED
   message_generation
@@ -17,9 +19,11 @@ find_package(catkin REQUIRED
   std_msgs
   nav_msgs
   sensor_msgs
+  hector_uav_msgs
   roslib
 )
 include_directories(
+${catkin_INCLUDE_DIRS}
 ${EIGEN3_INCLUDE_DIR}
 ${GeographicLib_INCLUDE_DIRS}
 ) 
